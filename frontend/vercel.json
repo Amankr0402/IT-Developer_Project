@@ -3,6 +3,7 @@
         "frontend": {
             "root": "frontend",
             "routePrefix": "/",
+            "Output Directory": "dist",
             "framework": "vite"
         },
         "backend": {
