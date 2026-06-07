@@ -1,4 +1,4 @@
-module.exports = {
+{
     "experimentalServices": {
         "frontend": {
             "root": "frontend",
@@ -10,4 +10,4 @@ module.exports = {
             "routePrefix": "/_/backend"
         }
     }
-};
+}

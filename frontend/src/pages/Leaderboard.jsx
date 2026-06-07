@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const Leaderboard = () => {
   const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/leaderboard')
+    axios.get(`${API_BASE_URL}/api/leaderboard`)
       .then(res => setLeaders(res.data))
       .catch(err => console.error(err));
   }, []);

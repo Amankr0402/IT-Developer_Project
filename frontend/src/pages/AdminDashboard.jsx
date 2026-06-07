@@ -137,6 +137,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -186,7 +187,7 @@ const AdminDashboard = () => {
 
   const submitQuiz = async () => {
     try {
-      await axios.post('http://localhost:5000/api/quizzes', quizData);
+      await axios.post(`${API_BASE_URL}/api/quizzes`, quizData);
       alert('Quiz Created Successfully!');
       navigate('/');
     } catch (error) {

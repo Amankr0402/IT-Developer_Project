@@ -155,7 +155,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white px-4 py-2 shadow-md sticky top-0 z-50">
+    <nav className="bg-gray-900 text-white px-4 py-1 shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
 
         {/* LOGO + NAME */}
@@ -164,8 +164,8 @@ const Navbar = () => {
             src="/logo.png"
             alt="Quick Spark Logo"
             className="
-              h-14 w-14 
-              md:h-16 md:w-16 
+              h-16 w-16 
+              md:h-20 md:w-20 
               object-contain
             "
           />
