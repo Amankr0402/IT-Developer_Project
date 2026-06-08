@@ -157,11 +157,15 @@ const AdminDashboard = () => {
     explanation: ''
   });
 
-  const handleQuizChange = (e) =>
-    setQuizData({ ...quizData, [e.target.name]: e.target.value });
+  const handleQuizChange = (e) => {
+    const value = e.target.name === 'timeLimit' ? Number(e.target.value) : e.target.value;
+    setQuizData({ ...quizData, [e.target.name]: value });
+  };
 
-  const handleQuestionChange = (e) =>
-    setCurrentQuestion({ ...currentQuestion, [e.target.name]: e.target.value });
+  const handleQuestionChange = (e) => {
+    const value = e.target.name === 'correctAnswer' ? Number(e.target.value) : e.target.value;
+    setCurrentQuestion({ ...currentQuestion, [e.target.name]: value });
+  };
 
   const handleOptionChange = (index, value) => {
     const newOptions = [...currentQuestion.options];
@@ -172,7 +176,10 @@ const AdminDashboard = () => {
   const addQuestion = () => {
     setQuizData({
       ...quizData,
-      questions: [...quizData.questions, currentQuestion]
+      questions: [...quizData.questions, {
+        ...currentQuestion,
+        correctAnswer: Number(currentQuestion.correctAnswer)
+      }]
     });
 
     setCurrentQuestion({
@@ -187,11 +194,19 @@ const AdminDashboard = () => {
 
   const submitQuiz = async () => {
     try {
-      await axios.post(`${API_BASE_URL}/api/quizzes`, quizData);
+      const payload = {
+        ...quizData,
+        timeLimit: Number(quizData.timeLimit),
+        questions: quizData.questions.map(q => ({
+          ...q,
+          correctAnswer: Number(q.correctAnswer)
+        }))
+      };
+      await axios.post(`${API_BASE_URL}/api/quizzes`, payload);
       alert('Quiz Created Successfully!');
       navigate('/');
     } catch (error) {
-      alert('Error creating quiz');
+      alert('Error creating quiz: ' + (error.response?.data?.error || error.message));
     }
   };
 
