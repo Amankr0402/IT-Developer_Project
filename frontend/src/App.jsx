@@ -273,19 +273,23 @@ const Home = () => (
 function App() {
   return (
     <Router>
-      <Navbar />
+      <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900 font-sans">
+        <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/quiz-home" element={<QuizHome />} />
-        <Route path="/take-quiz/:id" element={<TakeQuiz />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-      </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/quiz-home" element={<QuizHome />} />
+            <Route path="/take-quiz/:id" element={<TakeQuiz />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+          </Routes>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </Router>
   );
 }
